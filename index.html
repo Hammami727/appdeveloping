@@ -1,39 +1,29 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#4CAF50">
-    <title>Meine Progressive Web App</title>
-    <link rel="manifest" href="/manifest.json">
-    <link rel="icon" href="icons/icon-192x192.png" sizes="192x192">
-    <link rel="icon" href="icons/icon-512x512.png" sizes="512x512">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 50px;
-            background-color: #f4f4f4;
-        }
-        button {
-            padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #45a049;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meine PWA</title>
+  
+  <!-- Web App Manifest -->
+  <link rel="manifest" href="manifest.json">
+  
+  <!-- Favicon und Icons -->
+  <link rel="icon" href="images/icon.png" type="image/png">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Willkommen in meiner Progressive Web App!</h1>
-    <p>Diese App funktioniert auch offline!</p>
-    <button id="installButton">Installieren</button>
+  <header>
+    <h1>Willkommen zu meiner PWA!</h1>
+  </header>
 
-    <script src="app.js"></script>
+  <main>
+    <p>Diese App funktioniert auch offline und kann als App auf deinem Home-Bildschirm installiert werden.</p>
+    <button id="install-btn">Installiere die App</button>
+  </main>
+
+  <script src="app.js"></script>
 </body>
 </html>

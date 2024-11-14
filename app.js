@@ -1,23 +1,30 @@
-let deferredPrompt;
-const installButton = document.getElementById('installButton');
-
-// Zeigt den Installations-Button an, wenn die PWA installiert werden kann
-window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault(); // Verhindert, dass der Standard-Installationsdialog erscheint
-    deferredPrompt = e;
-    installButton.style.display = 'block'; // Zeigt den Installationsbutton an
-});
-
-// Wenn der Installations-Button geklickt wird
-installButton.addEventListener('click', () => {
-    deferredPrompt.prompt(); // Zeigt den Installationsdialog
-    deferredPrompt.userChoice.then((result) => {
-        if (result.outcome === 'accepted') {
-            console.log('Benutzer hat die Installation akzeptiert');
-        } else {
-            console.log('Benutzer hat die Installation abgelehnt');
-        }
-        deferredPrompt = null;
-        installButton.style.display = 'none'; // Versteckt den Button nach der Installation
+// Service Worker Registrieren
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/service-worker.js').then((registration) => {
+        console.log('Service Worker registriert: ', registration);
+      }).catch((error) => {
+        console.log('Service Worker Registrierung fehlgeschlagen: ', error);
+      });
     });
-});
+  }
+  
+  // Installieren der App als PWA
+  let deferredPrompt;
+  
+  window.addEventListener('beforeinstallprompt', (e) => {
+    // Verhindert das automatische Anzeigen des Installationsdialogs
+    e.preventDefault();
+    deferredPrompt = e;
+    const installButton = document.getElementById('install-btn');
+    installButton.style.display = 'block';
+  
+    installButton.addEventListener('click', () => {
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice.then((choiceResult) => {
+        console.log(choiceResult.outcome);
+        deferredPrompt = null;
+      });
+    });
+  });
+  
